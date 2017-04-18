@@ -11,6 +11,14 @@ class CreateThreadsTest extends TestCase
 {
 	use DatabaseMigrations;
 
+    /** @test */
+    public function guests_cannot_see_the_create_thread_page()
+    {
+        $this->withExceptionHandling()
+            ->get('threads/create')
+            ->assertRedirect('/login');
+    }
+
 	/** @test */
 	public function guests_may_not_make_threads()
 	{
@@ -18,6 +26,7 @@ class CreateThreadsTest extends TestCase
     	$thread = make('App\Thread');
     	$this->post('/threads', $thread->toArray() );
 	}
+
     /** @test */
     public function an_authenticate_user_can_create_forum_threads()
     {
