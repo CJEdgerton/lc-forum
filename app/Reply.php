@@ -17,4 +17,16 @@ class Reply extends Model
 	{
 		return $this->belongsTo('App\Thread');
 	}
+
+	public function favorites()
+	{
+		return $this->morphMany(Favorite::class, 'favorited');
+	}
+
+	public function favorite($user_id)
+	{
+		$attributes = ['user_id' => $user_id];
+		if( ! $this->favorites()->where($attributes)->exists() )
+			return $this->favorites()->create($attributes);
+	}
 }
