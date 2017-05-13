@@ -2,23 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Reply extends Model
-{
-	protected $guarded = [];
-
-	protected $with = ['owner', 'favorites'];
-
-	public function owner() 
-	{
-		return $this->belongsTo('App\User', 'user_id');
-	}
-
-	public function thread()
-	{
-		return $this->belongsTo('App\Thread');
-	}
+trait Favoritable {
 
 	public function favorites()
 	{
@@ -41,4 +25,5 @@ class Reply extends Model
 	{
 		return $this->favorites->count();
 	}
+	
 }
