@@ -108,7 +108,8 @@ class ThreadsController extends Controller
      */
     public function destroy($channel, Thread $thread)
     {
-        // $thread->replies()->delete(); // replaced by model event on thread model
+        $this->authorize('update', $thread);
+         
         $thread->delete();
         if( request()->wantsJson() ) {
             return response([], 204);

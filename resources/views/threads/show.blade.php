@@ -11,15 +11,18 @@
                             <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted:
                             {{ $thread->title }}
                         </span>            
-                        <span>
-                            <form action="{{ $thread->path() }}" method="POST">
-                                {{ csrf_field() }} 
-                                {{ method_field('DELETE') }} 
-                                <button type="submit" class="btn btn-link">
-                                    Delete
-                                </button>
-                            </form> 
-                        </span>
+                        {{-- you can use @can('update', $thread) as well once you're brave enough --}}
+                        @if (auth()->user()->can('update', $thread))
+                            <span>
+                                <form action="{{ $thread->path() }}" method="POST">
+                                    {{ csrf_field() }} 
+                                    {{ method_field('DELETE') }} 
+                                    <button type="submit" class="btn btn-link">
+                                        Delete
+                                    </button>
+                                </form> 
+                            </span>
+                        @endif
                     </div>
                 </div>
 
