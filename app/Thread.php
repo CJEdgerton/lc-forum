@@ -6,19 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+	use Traits\RecordsActivity;
 	protected $guarded = [];
 	protected $with = ['creator', 'channel'];
 
 	protected static function boot()
 	{
 		parent::boot();
+
 		static::addGlobalScope('replyCount', function($builder) {
 			$builder->withCount('replies');
 		});
+
 		static::deleting(function ($thread) {
 			$thread->replies()->delete();
 		});
+
+		static::created(function ($thread) {
+			$thread->recordActivity('created');
+		});
+
 	}
+
 	public function path()
 	{
 		return "/threads/{$this->channel->slug}/{$this->id}";
