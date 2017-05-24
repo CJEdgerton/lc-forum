@@ -90,16 +90,12 @@ class CreateThreadsTest extends TestCase
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
-    }
 
-    /** @test */
-    public function threads_may_only_be_deleted_by_those_who_have_permission()
-    {
-        //
+        $this->assertEquals(0, \App\Activity::count());
     }
 
     // Helper function
-    public function publishThread(array $overides=[])
+    protected function publishThread(array $overides=[])
     {
         $this->withExceptionHandling()->signIn();
         $thread = make('App\Thread', $overides);
