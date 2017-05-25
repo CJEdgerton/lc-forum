@@ -10,6 +10,7 @@ trait RecordsActivity
 		if( auth()->guest() ) return;
 		
 		foreach( static::getActivitiesToRecord() as $event) {
+			// Reference Laravel model events
 			static::$event(function ($model) use($event) {
 				$model->recordActivity($event);
 			});
@@ -28,8 +29,8 @@ trait RecordsActivity
 	function recordActivity($event)
 	{
 		$this->activity()->create([
-			'user_id'      => auth()->id(),
-			'type'         => $this->getActivityType($event),
+			'user_id' => auth()->id(),
+			'type'    => $this->getActivityType($event),
 		]);
 	}
 
