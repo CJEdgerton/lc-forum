@@ -1,6 +1,7 @@
 @component('profiles.activities.activity')
 
 	@slot('heading')
+		<span class="glyphicon glyphicon-bullhorn"></span>&nbsp; 
 		{{ $profileUser->name }} 
 		published:
 		<a href="{{ $activity->subject->path() }}">

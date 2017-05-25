@@ -1,6 +1,7 @@
 @component('profiles.activities.activity')
 
 	@slot('heading')
+		<span class="glyphicon glyphicon-comment"></span>&nbsp; 
 		{{ $profileUser->name }} 
 		replied to: 
 		<a href="{{ $activity->subject->thread->path() }}">
