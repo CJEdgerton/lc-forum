@@ -18,8 +18,8 @@
                                 <form action="{{ $thread->path() }}" method="POST">
                                     {{ csrf_field() }} 
                                     {{ method_field('DELETE') }} 
-                                    <button type="submit" class="btn btn-link">
-                                        Delete
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash text-danger"></span>
                                     </button>
                                 </form> 
                             </span>
