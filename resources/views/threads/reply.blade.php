@@ -38,15 +38,9 @@
 	    		<button class="btn btn-sm btn-default" @click="editing = false">Cancel</button>
 
 				@can('update', $reply )
-					{{-- Delete --}}
-					<form action="/replies/{{ $reply->id }}" method="POST" class="pull-right">
-						{{ csrf_field() }}
-						{{ method_field('DELETE') }}
-
-						<button type="submit" class="btn btn-default btn-sm">
-							<span class="glyphicon glyphicon-trash text-danger"></span>
-						</button>
-					</form>
+					<button type="submit" class="btn btn-default btn-sm pull-right" @click="destroy">
+						<span class="glyphicon glyphicon-trash text-danger"></span>
+					</button
 				@endcan
 
 	    	</div>

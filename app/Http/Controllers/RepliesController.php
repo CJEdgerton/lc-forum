@@ -31,7 +31,7 @@ class RepliesController extends Controller
 	public function update(Reply $reply)
 	{
 		$this->authorize('update', $reply);
-		
+
 		$reply->update([
 			'body' => request('body')
 		]);
@@ -40,8 +40,11 @@ class RepliesController extends Controller
 	public function destroy(Reply $reply)
 	{
 		$this->authorize('update', $reply);
-		
 		$reply->delete();
+		
+		if( request()->expectsJson() )
+			return response(['status' => 'Reply Deleted']);
+
 		return back();
 	}
 }

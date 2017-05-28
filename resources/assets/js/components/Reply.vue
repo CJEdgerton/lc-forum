@@ -18,6 +18,12 @@
 				this.editing = false;
 				flash('Reply updated!');
 			},
+			destroy() {
+				axios.delete('/replies/' + this.attributes.id);
+				$(this.$el).fadeOut(300, () => {
+					flash('Reply deleted.');
+				});
+			},
 			toggleEditing() {
 				this.editing = ! this.editing
 			}
