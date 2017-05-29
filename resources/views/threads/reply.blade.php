@@ -18,9 +18,10 @@
 					@endcan
 
 					{{-- Favorites --}}
-					<button class="btn btn-default btn-sm pull-right" @click="favorite" v-bind:class="{ disabled: favoritesCount }">
+					<favorite :reply="{{ $reply }}"></favorite>	
+					{{-- <button class="btn btn-default btn-sm pull-right" @click="favorite" v-bind:class="{ disabled: favoritesCount }">
 						<span class="glyphicon glyphicon-thumbs-up"></span> @{{ favoritesCount }} 
-					</button>
+					</button> --}}
 				</div>
 			</div>
 		</div>	

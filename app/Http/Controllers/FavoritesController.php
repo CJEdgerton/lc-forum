@@ -18,4 +18,9 @@ class FavoritesController extends Controller
 		$reply->favorite( auth()->id() );
 		return back();
 	}
+	public function destroy(Reply $reply)
+	{
+		$reply->unfavorite( auth()->id() );
+		// return back();
+	}
 }

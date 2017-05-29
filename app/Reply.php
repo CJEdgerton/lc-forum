@@ -13,7 +13,7 @@ class Reply extends Model
 	protected $with = ['owner', 'favorites'];
 
 	// Whenever Reply is cast to json or an array, append these properties	
-	protected $appends = ['favoritesCount'];
+	protected $appends = ['favoritesCount', 'isFavoritedByCurrentUser'];
 
 	public function owner() 
 	{

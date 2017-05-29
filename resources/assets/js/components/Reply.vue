@@ -1,22 +1,19 @@
 <script>
+	import Favorite from './Favorite.vue';
+
 	export default {
 		props: [
 			'attributes'
 		],
+		components: { Favorite },
 		data() {
 			return {
 				editing: false,
-				favoritesCount: this.attributes.favorites.length,
 				body: this.attributes.body
 			};
 		},
 
 		methods: {
-			favorite() {
-				axios.post('/replies/' + this.attributes.id + '/favorites');
-				this.favoritesCount ++;
-				flash('Reply favorited!');
-			},
 			update() {
 				axios.patch('/replies/' + this.attributes.id, {
 					body: this.body
