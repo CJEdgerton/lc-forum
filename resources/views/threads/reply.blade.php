@@ -13,17 +13,14 @@
 					{{-- Edit --}}
 					@can('update', $reply )
 						<button class="btn btn-sm btn-default pull-left" style="margin-right: 5px;" @click="toggleEditing">
-							<span class="glyphicon glyphicon-edit" v-bind:class="classForEditingButton"></span>
+							<span class="glyphicon glyphicon-edit" v-bind:class="{ 'text-success': editing }"></span>
 						</button>
 					@endcan
 
 					{{-- Favorites --}}
-					<form method="POST" action="/replies/{{$reply->id}}/favorites" class="pull-right">
-						{{ csrf_field() }}
-						<button type="submit" class="btn btn-default btn-sm" {{ $reply->isFavorited() ? 'disabled' : '' }}>
-							<span class="glyphicon glyphicon-thumbs-up"></span> {{ $reply->favorites_count }} 
-						</button>
-					</form>
+					<button class="btn btn-default btn-sm pull-right" @click="favorite" v-bind:class="{ disabled: favoritesCount }">
+						<span class="glyphicon glyphicon-thumbs-up"></span> @{{ favoritesCount }} 
+					</button>
 				</div>
 			</div>
 		</div>	
@@ -40,7 +37,7 @@
 				@can('update', $reply )
 					<button type="submit" class="btn btn-default btn-sm pull-right" @click="destroy">
 						<span class="glyphicon glyphicon-trash text-danger"></span>
-					</button
+					</button>
 				@endcan
 
 	    	</div>

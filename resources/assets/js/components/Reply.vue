@@ -6,11 +6,17 @@
 		data() {
 			return {
 				editing: false,
+				favoritesCount: this.attributes.favorites.length,
 				body: this.attributes.body
 			};
 		},
 
 		methods: {
+			favorite() {
+				axios.post('/replies/' + this.attributes.id + '/favorites');
+				this.favoritesCount ++;
+				flash('Reply favorited!');
+			},
 			update() {
 				axios.patch('/replies/' + this.attributes.id, {
 					body: this.body
@@ -26,13 +32,6 @@
 			},
 			toggleEditing() {
 				this.editing = ! this.editing
-			}
-		},
-		computed: {
-			classForEditingButton: function () {
-				return {
-					'text-success': this.editing,
-				}
 			}
 		}
 	}
