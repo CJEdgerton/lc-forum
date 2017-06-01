@@ -18,10 +18,9 @@
 					@endcan
 
 					{{-- Favorites --}}
+					@if( auth()->check() )
 					<favorite :reply="{{ $reply }}"></favorite>	
-					{{-- <button class="btn btn-default btn-sm pull-right" @click="favorite" v-bind:class="{ disabled: favoritesCount }">
-						<span class="glyphicon glyphicon-thumbs-up"></span> @{{ favoritesCount }} 
-					</button> --}}
+					@endif
 				</div>
 			</div>
 		</div>	
