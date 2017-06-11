@@ -21,7 +21,7 @@ window.Vue = require('vue');
 window.Vue.prototype.authorize = function(handler) {
 	// Additional admin privledges
 	let user = window.App.user;
-	return user ? handler(user) ? return false;
+	return user ? handler(user) : false;
 }
 
 /**
